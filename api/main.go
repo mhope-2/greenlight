@@ -11,13 +11,13 @@ import (
 
 const version = "1.0.0"
 
-// config struct
+// Config struct
 type Config struct {
 	port int
 	env string
 }
 
-// application struct
+// Application struct
 type Application struct {
 	config Config
 	logger *log.Logger
@@ -34,12 +34,12 @@ func main() {
 	flag.Parse()
 
 	// Initialize a new logger which writes messages to the standard out stream,
-	Logger := log.New(os.Stdout, "", log.Ldate|log.Ltime)
+	logger := log.New(os.Stdout, "", log.Ldate|log.Ltime)
 
 	// Declare an instance of the application struct, containing the config struct and the logger.
 	app := &Application{
 		config: cfg,
-		logger: Logger,
+		logger: logger,
 	}
 
 
@@ -53,9 +53,9 @@ func main() {
 	}
 
 	// Start the HTTP
-	Logger.Printf("starting %s server on %s", cfg.env, srv.Addr)
+	logger.Printf("starting %s server on %s", cfg.env, srv.Addr)
 	err := srv.ListenAndServe()
-	Logger.Fatal(err)
+	logger.Fatal(err)
 
 
 }

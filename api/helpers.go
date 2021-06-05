@@ -9,6 +9,10 @@ import (
 
 )
 
+// Define an envelope type.
+type envelope map[string]interface{}
+
+
 // Retrieve the "id" URL parameter from the current request context, then convert it to
 //an integer and return it. If the operation isn't successful, return 0 and an error.
 //
@@ -22,6 +26,7 @@ func (app *Application) readIDParam(r *http.Request) (int64, error) {
 
 	return id, nil
 }
+
 
 // writeJSON method
 func (app *Application) writeJSON(w http.ResponseWriter, status int, data interface{}, headers http.Header) error {
